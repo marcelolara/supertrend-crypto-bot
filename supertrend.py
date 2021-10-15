@@ -1,16 +1,17 @@
 import ccxt
 import schedule
 import pandas as pd
-pd.set_option('display.max_rows', None)
-# pd.set_option('display.expand_frame_repr', False)
-
 import warnings
-warnings.filterwarnings('ignore')
-
 from datetime import datetime
 import time
 
+pd.set_option('display.max_rows', None)
+pd.set_option('display.expand_frame_repr', False)
+
+warnings.filterwarnings('ignore')
+
 exchange = ccxt.binance()
+
 
 def tr(data):
     data['previous_close'] = data['close'].shift(1)
@@ -53,6 +54,7 @@ def supertrend(df, period=7, multiplier=3):
 
 
 in_position = False
+
 
 def check_buy_sell_signals(df):
     global in_position
